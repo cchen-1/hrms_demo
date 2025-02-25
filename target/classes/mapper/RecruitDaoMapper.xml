@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.RecruitDaoMapper">
+
+	<!-- 获取所有Recruit实体 -->
+	<select id="getAllRecruits" resultType="web.entity.Recruit">
+		SELECT * FROM recruit
+	</select>
+
+	<!-- 传入一个Recruit实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addRecruit" parameterType="web.entity.Recruit">
+		insert into recruit
+		values(
+		#{recruitId} , #{title} , #{recruitPost} , #{recruitNumber},
+		#{publishDate} , #{endDate} )
+	</insert>
+
+	<!-- 传入一个Recruit实体，使表中与recruitId匹配的数据更新为传入Recruit实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateRecruit" parameterType="web.entity.Recruit">
+		update recruit set
+		title=#{title} , recruitPost=#{recruitPost} ,
+		recruitNumber=#{recruitNumber}, publishDate=#{publishDate} ,
+		endDate=#{endDate}
+		where recruitId=#{recruitId}
+	</update>
+
+	<!-- 通过recruitId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteRecruit" parameterType="int">
+		delete from
+		recruit
+		where
+		recruitId = #{recruitId}
+	</delete>
+
+</mapper>

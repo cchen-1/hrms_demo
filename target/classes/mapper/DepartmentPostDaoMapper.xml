@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.DepartmentPostDaoMapper">
+
+	<!-- 获取所有DepartmentPost实体 -->
+	<select id="getAllDepartmentPosts"
+		resultType="web.entity.DepartmentPost">
+		SELECT * FROM departmentpost
+	</select>
+
+	<!-- 传入一个DepartmentPost实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addDepartmentPost"
+		parameterType="web.entity.DepartmentPost">
+		insert into departmentpost
+		values(
+		#{postId} , #{postNo} ,
+		#{departmentNo} ,
+		#{postName} ,
+		#{postSalary} , #{remark} )
+	</insert>
+
+	<!-- 传入一个DepartmentPost实体，使表中与postId匹配的数据更新为传入DepartmentPost实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateDepartmentPost"
+		parameterType="web.entity.DepartmentPost">
+		update departmentpost set postNo=#{postNo} ,
+		departmentNo=#{departmentNo} ,
+		postName=#{postName} ,
+		postSalary=#{postSalary} , remark=#{remark}
+		where postId=#{postId}
+	</update>
+
+	<!-- 通过postId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteDepartmentPost" parameterType="int">
+		delete from
+		departmentpost
+		where
+		postId = #{postId}
+	</delete>
+
+	<!-- 通过传入一个DepartmentPost实体，获取与该实体中非空（非默认值）元素匹配的所有行数据 -->
+	<select id="getDepartmentPost"
+		parameterType="web.entity.DepartmentPost"
+		resultType="web.entity.DepartmentPost">
+		SELECT * FROM departmentpost
+		where 1=1
+		<if test="postId != 0">
+			and postId=#{postId}
+		</if>
+		<if test="postNo != null">
+			and postNo = #{postNo}
+		</if>
+		<if test="departmentNo != null">
+			and departmentNo = #{departmentNo}
+		</if>
+		<if test="postName != null">
+			and postName = #{postName}
+		</if>
+		<if test="postSalary != null">
+			and postSalary = #{postSalary}
+		</if>
+		<if test="remark != null">
+			and remark = #{remark}
+		</if>
+	</select>
+
+</mapper>

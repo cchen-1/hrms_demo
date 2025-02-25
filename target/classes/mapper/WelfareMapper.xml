@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.WelfareDao">
+	<select id="findWelfareByName" resultType="web.entity.Welfare" parameterType="string">
+		select * from welfare where name = #{name}
+	</select>
+
+	<select id="getWelfares" resultType="web.entity.Welfare">
+		select * from welfare
+	</select>
+	
+	<insert id="addWelfare" parameterType="web.entity.Welfare" >
+		insert into welfare(welfareId,name,amount,percentage) values(#{welfareId},#{name},#{amount},#{percentage})
+	</insert>
+	
+	<delete id="deleteWelfareById" parameterType="int">
+		delete from welfare where welfareId = #{welfareId}
+	</delete>
+	
+	<update id="updateWelfare" parameterType="web.entity.Welfare">
+		update welfare set name = #{name},amount=#{amount},percentage=#{percentage} where welfareId = #{welfareId}
+	</update>
+	
+</mapper>

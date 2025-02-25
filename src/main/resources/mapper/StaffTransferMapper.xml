@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.StaffTransferDao">
+	<select id="findStaffTransferById" resultType="web.entity.StaffTransfer" parameterType="int">
+		select * from staffTransfer where staffTransferId = #{staffTransferId}
+	</select>
+
+	<select id="getStaffTransfers" resultType="web.entity.StaffTransfer">
+		select * from staffTransfer
+	</select>
+	
+	<insert id="addStaffTransfer" parameterType="web.entity.StaffTransfer" >
+		insert into staffTransfer values(#{staffTransferId},#{staffNo},#{staffName},
+		#{originalDepartment},#{originalPost},#{newDepartment},#{newPost})
+	</insert>
+	
+	<delete id="deleteStaffTransferById" parameterType="int">
+		delete from staffTransfer where staffTransferId = #{staffTransferId}
+	</delete>
+	
+	<!-- <update id="updateStaffTransfer" parameterType="web.entity.StaffTransfer">
+		update staffTransfer set staffTransferId=#{staffTransferId},staffNo=#{staffNo},staffName=#{staffName},
+		originalDepartment=#{originalDepartment},originalPost=#{originalPost},newDepartment=#{newDepartment},newPost=#{newPost}
+		where staffTransferId = #{staffTransferId}
+	</update> -->
+	
+</mapper>

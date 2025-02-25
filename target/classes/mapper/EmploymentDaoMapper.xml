@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.EmploymentDaoMapper">
+
+	<!-- 获取所有Employment实体 -->
+	<select id="getAllEmployments"
+		resultType="web.entity.Employment">
+		SELECT * FROM employment
+	</select>
+
+	<!-- 传入一个Employment实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addEmployment" parameterType="web.entity.Employment">
+		insert into employment
+		values(
+		#{employmentId} , #{name} , #{sex} , #{employmentType},
+		#{employmentPost} , #{status} , #{comment}, #{remark} ,
+		#{employmentResult} )
+	</insert>
+
+	<!-- 传入一个Employment实体，使表中与employmentId匹配的数据更新为传入Employment实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateEmployment"
+		parameterType="web.entity.Employment">
+		update employment set
+		name=#{name} , sex=#{sex} ,
+		employmentType=#{employmentType}, employmentPost=#{employmentPost} ,
+		status=#{status}, comment=#{comment} , remark=#{remark},
+		employmentResult=#{employmentResult}
+		where employmentId=#{employmentId}
+	</update>
+
+	<!-- 通过employmentId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteEmployment" parameterType="int">
+		delete from
+		employment
+		where
+		employmentId = #{employmentId}
+	</delete>
+
+</mapper>

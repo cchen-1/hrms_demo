@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.StaffWelfareDao">
+	<select id="findStaffWelfareByNo" resultType="web.entity.StaffWelfare" parameterType="string">
+		select * from staffWelfare where staffNo = #{no}
+	</select>
+
+	<select id="getStaffWelfares" resultType="web.entity.StaffWelfare">
+		select * from staffWelfare
+	</select>
+
+	<insert id="addStaffWelfare" parameterType="web.entity.StaffWelfare" >
+		insert into staffWelfare values(#{staffWelfareId},#{staffNo},#{pension},#{unemployment},#{medical},#{medical},#{injury},
+		#{housingFund},#{transportation},#{meal},#{general})
+	</insert>
+ 		
+	<delete id="deleteStaffWelfareById" parameterType="int">
+		delete from staffWelfare where staffWelfareId = #{staffWelfareId}
+	</delete>
+	
+	<update id="updateStaffWelfare" parameterType="web.entity.StaffWelfare">
+		update staffWelfare set pension=#{pension},unemployment=#{unemployment},medical=#{medical},birth=#{birth},injury=#{injury},
+		housingFund=#{housingFund},transportation=#{transportation},meal=#{meal},general=#{general} 
+		where staffWelfareId = #{staffWelfareId}
+	</update>
+	
+</mapper>

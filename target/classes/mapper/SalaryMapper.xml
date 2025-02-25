@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.SalaryDao">
+	<select id="findSalaryByNo" resultType="web.entity.Salary" parameterType="string">
+		select * from salary where staffNo = #{no}
+	</select>
+
+	<select id="getSalarys" resultType="web.entity.Salary">
+		select * from salary
+	</select>
+	
+	<insert id="addSalary" parameterType="web.entity.Salary" >
+		insert into salary(salaryId,staffNo,year,month,salary,publisher,publishDate)
+		values(#{salaryId},#{staffNo},#{year},#{month},#{salary},#{publisher},#{publishDate})
+	</insert>
+	
+	<delete id="deleteSalaryById" parameterType="int">
+		delete from salary where salaryId = #{salaryId}
+	</delete>
+	
+</mapper>

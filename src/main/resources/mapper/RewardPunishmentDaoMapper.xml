@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.RewardPunishmentDaoMapper">
+
+	<!-- 获取所有RewardPunishment实体 -->
+	<select id="getAllRewardPunishments"
+		resultType="web.entity.RewardPunishment">
+		SELECT * FROM rewardpunishment
+	</select>
+
+	<!-- 传入一个RewardPunishment实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addRewardPunishment"
+		parameterType="web.entity.RewardPunishment">
+		insert into rewardpunishment
+		values(
+		#{rewardPunishmentId} , #{staffNo} , #{type} , #{detail},
+		#{amount} )
+	</insert>
+
+	<!-- 传入一个RewardPunishment实体，使表中与rewardpunishmentId匹配的数据更新为传入RewardPunishment实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateRewardPunishment"
+		parameterType="web.entity.RewardPunishment">
+		update rewardpunishment set
+		staffNo=#{staffNo} ,
+		type=#{type} ,
+		detail=#{detail}, amount=#{amount}
+		where
+		rewardpunishmentId=#{rewardPunishmentId}
+	</update>
+
+	<!-- 通过rewardpunishmentId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteRewardPunishment" parameterType="int">
+		delete from
+		rewardpunishment
+		where
+		rewardpunishmentId =
+		#{recrurewardPunishmentIditId}
+	</delete>
+
+</mapper>

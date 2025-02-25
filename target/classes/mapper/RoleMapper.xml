@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.RoleDao">
+	<select id="findRoleByNo" resultType="web.entity.Role" parameterType="string">
+		select * from role where staffNo = #{no}
+	</select>
+
+	<select id="getRoles" resultType="web.entity.Role">
+		select * from role
+	</select>
+	
+	<insert id="addRole" parameterType="web.entity.Role" >
+		insert into role(roleId,staffNo,role) values(#{roleId},#{staffNo},#{role})
+	</insert>
+	
+	<delete id="deleteRoleById" parameterType="int">
+		delete from role where roleId = #{roleId}
+	</delete>
+	
+	<update id="updateRole" parameterType="web.entity.Role">
+		update role set role.role = #{role} where roleId = #{roleId}
+	</update>
+	
+</mapper>

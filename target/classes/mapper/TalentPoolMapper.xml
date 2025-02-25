@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.TalentPoolDao">
+	<select id="findTalentPoolById" resultType="web.entity.TalentPool" parameterType="int">
+		select * from talentPool where talentPoolId = #{talentPoolId}
+	</select>
+
+	<select id="getTalentPools" resultType="web.entity.TalentPool">
+		select * from talentPool
+	</select>
+	
+	<insert id="addTalentPool" parameterType="web.entity.TalentPool" >
+		insert into talentPool values(#{talentPoolId},#{name},#{sex},#{email},#{recruitType},#{recruitPost},#{comment},#{resumeName})
+	</insert>
+	
+	<delete id="deleteTalentPoolById" parameterType="int">
+		delete from talentPool where talentPoolId = #{talentPoolId}
+	</delete>
+	
+	<update id="updateTalentPool" parameterType="web.entity.TalentPool">
+		update talentPool set name=#{name},sex=#{sex},email=#{email},recruitType=#{recruitType},recruitPost=#{recruitPost},
+		comment=#{comment},resumeName=#{resumeName} where talentPoolId = #{talentPoolId}
+	</update>
+</mapper>

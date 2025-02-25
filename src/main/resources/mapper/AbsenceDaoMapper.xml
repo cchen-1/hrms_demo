@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.AbsenceDaoMapper">
+
+	<!-- 获取所有Absence实体 -->
+	<select id="getAllAbsences" resultType="web.entity.Absence">
+		SELECT * FROM absence
+	</select>
+
+	<!-- 传入一个Absence实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addAbsence" parameterType="web.entity.Absence">
+		insert into absence
+		values(
+		#{absenceId} , #{staffNo} , #{beginDate} , #{endDate} ,
+		#{reason} )
+	</insert>
+
+	<!-- 传入一个Absence实体，使表中与absenceId匹配的数据更新为传入Absence实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateAbsence" parameterType="web.entity.Absence">
+		update absence set
+		staffNo=#{staffNo} , beginDate=#{beginDate} , endDate=#{endDate} ,
+		reason=#{reason} where absenceId=#{absenceId}
+	</update>
+
+	<!-- 通过absenceId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteAbsence" parameterType="int">
+		delete from absence
+		where
+		absenceId = #{absenceId}
+	</delete>
+
+</mapper>

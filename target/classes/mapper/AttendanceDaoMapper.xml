@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.dao.AttendanceDaoMapper">
+
+	<!-- 获取所有Attendance实体 -->
+	<select id="getAllAttendances"
+		resultType="web.entity.Attendance">
+		SELECT * FROM attendance
+	</select>
+
+	<!-- 传入一个Attendance实体向表中插入一行数据，并返回结果信息int（受影响行数） -->
+	<insert id="addAttendance" parameterType="web.entity.Attendance">
+		insert into attendance
+		values(
+		#{attendanceId} , #{staffNo} , #{clockDate} ,
+		#{clockInDate} ,
+		#{clockOffDate} )
+	</insert>
+
+	<!-- 传入一个Attendance实体，使表中与attendanceId匹配的数据更新为传入Attendance实体的数据，并返回结果信息int（受影响行数） -->
+	<update id="updateAttendance"
+		parameterType="web.entity.Attendance">
+		update attendance set staffNo=#{staffNo} ,
+		clockDate=#{clockDate} , clockInDate=#{clockInDate} ,
+		clockOffDate=#{clockOffDate} where attendanceId=#{attendanceId}
+	</update>
+
+	<!-- 通过attendanceId删除表中的一行数据，并返回结果信息int（受影响行数） -->
+	<delete id="deleteAttendance" parameterType="int">
+		delete from
+		attendance
+		where
+		attendanceId = #{attendanceId}
+	</delete>
+
+</mapper>
